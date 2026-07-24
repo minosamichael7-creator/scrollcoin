@@ -1,0 +1,253 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   achievements: vec AchievementId;
+   joinDate: Date;
+   lastActiveDate: Date;
+   lifetimeEarnings: nat;
+   "principal": UserId;
+   streakCount: nat;
+   streakFreezeCount: nat;
+   todayEarnings: nat;
+   totalCoins: nat;
+   username: text;
+ };
+type UserId = principal;
+type Timestamp = int;
+type RewardsError = 
+ variant {
+   alreadyRedeemed;
+   insufficientCoins;
+   invalidInput;
+   invalidMilestone;
+   notAuthorized;
+   notFound;
+   rewardNotFound;
+   userNotFound;
+ };
+type RewardItem = 
+ record {
+   category: text;
+   coinPrice: nat;
+   description: text;
+   id: nat;
+   image: text;
+   title: text;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RedemptionStatus = 
+ variant {
+   failed;
+   fulfilled;
+   pending;
+ };
+type Redemption = 
+ record {
+   coinsDeducted: nat;
+   id: nat;
+   rewardId: nat;
+   status: RedemptionStatus;
+   timestamp: Timestamp;
+   userId: UserId;
+ };
+type RedeemResult = 
+ variant {
+   err: RewardsError;
+   ok: Redemption;
+ };
+type RedeemProductResult = 
+ variant {
+   err: RewardsError;
+   ok: ProductRedemption;
+ };
+type ProductRedemption = 
+ record {
+   id: nat;
+   productId: nat;
+   redeemedAt: Timestamp;
+   userId: UserId;
+ };
+type Product = 
+ record {
+   category: text;
+   description: text;
+   id: nat;
+   imageUrl: text;
+   priceCoins: nat;
+   title: text;
+ };
+type LessonDifficulty = 
+ variant {
+   advanced;
+   beginner;
+   intermediate;
+ };
+type Lesson = 
+ record {
+   category: text;
+   description: text;
+   difficulty: LessonDifficulty;
+   id: nat;
+   steps: vec text;
+   title: text;
+ };
+type LeaderboardEntry = 
+ record {
+   rank: nat;
+   user: UserId;
+   username: text;
+   weeklyEarnings: nat;
+ };
+type FeedContentType = 
+ variant {
+   ainews;
+   article;
+   ebook;
+   finance;
+   funfact;
+   image;
+   lesson;
+   product;
+   reel;
+ };
+type FeedContent = 
+ record {
+   body: text;
+   category: text;
+   contentType: FeedContentType;
+   id: nat;
+   imageUrl: text;
+   title: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Ebook = 
+ record {
+   author: text;
+   category: text;
+   coverUrl: text;
+   description: text;
+   fullText: text;
+   id: nat;
+   title: text;
+ };
+type Date = int;
+type DailyGoal = 
+ record {
+   completed: bool;
+   date: Date;
+   earnedCoins: nat;
+   targetCoins: nat;
+ };
+type CoinAward = 
+ record {
+   amount: nat;
+   id: nat;
+   reason: text;
+   sourceSessionId: nat;
+   timestamp: Timestamp;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type AwardResult = 
+ variant {
+   err: RewardsError;
+   ok: CoinAward;
+ };
+type AchievementId = nat;
+type Achievement = 
+ record {
+   description: text;
+   icon: text;
+   id: AchievementId;
+   title: text;
+   unlockedThreshold: nat;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  getAchievements: () -> (vec Achievement) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getDailyGoal: (date: Date) -> (opt DailyGoal);
+  getEarningsHistory: () -> (vec CoinAward);
+  getEbook: (id: nat) -> (opt Ebook) query;
+  getEbooks: (offset: nat, limit: nat) -> (vec Ebook) query;
+  getFeedContent: (offset: nat, limit: nat, category: opt text) ->
+   (vec FeedContent) query;
+  getFeedContentByCategory: (category: text, offset: nat, limit: nat) ->
+   (vec FeedContent) query;
+  getLeaderboard: () -> (vec LeaderboardEntry) query;
+  getLesson: (id: nat) -> (opt Lesson) query;
+  getLessons: (offset: nat, limit: nat) -> (vec Lesson) query;
+  getProduct: (id: nat) -> (opt Product) query;
+  getProducts: (offset: nat, limit: nat) -> (vec Product) query;
+  getProfile: () -> (opt UserProfile);
+  getRewards: () -> (vec RewardItem) query;
+  getStreak: () ->
+   (record {
+      lastActiveDate: Date;
+      streakCount: nat;
+      streakFreezeCount: nat;
+    });
+  getWallet: () ->
+   (record {
+      lifetimeEarnings: nat;
+      todayEarnings: nat;
+      totalCoins: nat;
+    });
+  isCallerAdmin: () -> (bool) query;
+  recordScrollMilestone: (sessionId: nat, milestone: nat) -> (AwardResult);
+  redeemProduct: (productId: nat) -> (RedeemProductResult);
+  redeemReward: (rewardId: nat) -> (RedeemResult);
+  schema: () -> (text) query;
+  signIn: (username: text) -> (UserProfile);
+}

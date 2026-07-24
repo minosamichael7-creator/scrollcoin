@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "General Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.875rem;
+
+    --background: 0.14 0.015 50;
+    --foreground: 0.95 0.008 60;
+    --card: 0.18 0.018 50;
+    --card-foreground: 0.95 0.008 60;
+    --popover: 0.2 0.02 50;
+    --popover-foreground: 0.95 0.008 60;
+
+    --primary: 0.78 0.165 80;
+    --primary-foreground: 0.16 0.02 70;
+
+    --secondary: 0.24 0.022 50;
+    --secondary-foreground: 0.88 0.012 60;
+    --muted: 0.22 0.02 50;
+    --muted-foreground: 0.6 0.014 55;
+
+    --accent: 0.62 0.16 25;
+    --accent-foreground: 0.96 0.008 25;
+
+    --success: 0.7 0.16 150;
+    --success-foreground: 0.14 0.02 150;
+    --warning: 0.78 0.15 70;
+    --warning-foreground: 0.16 0.02 70;
+
+    --destructive: 0.6 0.2 22;
+    --destructive-foreground: 0.96 0.008 22;
+
+    --border: 0.3 0.022 50;
+    --input: 0.3 0.022 50;
+    --ring: 0.78 0.165 80;
+
+    --chart-1: 0.78 0.165 80;
+    --chart-2: 0.62 0.16 25;
+    --chart-3: 0.7 0.16 150;
+    --chart-4: 0.65 0.18 200;
+    --chart-5: 0.78 0.15 70;
+
+    --reel: 0.62 0.18 320;
+    --reel-foreground: 0.96 0.02 320;
+    --shop: 0.7 0.16 155;
+    --shop-foreground: 0.14 0.02 155;
+    --ainews: 0.68 0.15 230;
+    --ainews-foreground: 0.14 0.02 230;
+    --learn: 0.66 0.16 290;
+    --learn-foreground: 0.96 0.02 290;
+
+    --sidebar: 0.16 0.018 50;
+    --sidebar-foreground: 0.95 0.008 60;
+    --sidebar-primary: 0.78 0.165 80;
+    --sidebar-primary-foreground: 0.16 0.02 70;
+    --sidebar-accent: 0.24 0.022 50;
+    --sidebar-accent-foreground: 0.88 0.012 60;
+    --sidebar-border: 0.3 0.022 50;
+    --sidebar-ring: 0.78 0.165 80;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.82 0.16 85),
+      oklch(0.7 0.18 55)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.2 0.02 50),
+      oklch(0.16 0.018 50)
+    );
+    --gradient-coin: radial-gradient(
+      circle at 30% 30%,
+      oklch(0.88 0.15 90),
+      oklch(0.7 0.18 60)
+    );
+    --gradient-reel: linear-gradient(
+      180deg,
+      oklch(0.18 0.04 320),
+      oklch(0.12 0.02 320)
+    );
+    --gradient-shop: linear-gradient(
+      135deg,
+      oklch(0.72 0.16 155),
+      oklch(0.6 0.14 165)
+    );
+    --gradient-ainews: linear-gradient(
+      135deg,
+      oklch(0.7 0.15 230),
+      oklch(0.58 0.14 240)
+    );
+    --gradient-learn: linear-gradient(
+      135deg,
+      oklch(0.68 0.16 290),
+      oklch(0.56 0.15 300)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-press: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.14 0.015 50;
+    --foreground: 0.95 0.008 60;
+    --card: 0.18 0.018 50;
+    --card-foreground: 0.95 0.008 60;
+    --popover: 0.2 0.02 50;
+    --popover-foreground: 0.95 0.008 60;
+
+    --primary: 0.78 0.165 80;
+    --primary-foreground: 0.16 0.02 70;
+
+    --secondary: 0.24 0.022 50;
+    --secondary-foreground: 0.88 0.012 60;
+    --muted: 0.22 0.02 50;
+    --muted-foreground: 0.6 0.014 55;
+
+    --accent: 0.62 0.16 25;
+    --accent-foreground: 0.96 0.008 25;
+
+    --success: 0.7 0.16 150;
+    --success-foreground: 0.14 0.02 150;
+    --warning: 0.78 0.15 70;
+    --warning-foreground: 0.16 0.02 70;
+
+    --destructive: 0.6 0.2 22;
+    --destructive-foreground: 0.96 0.008 22;
+
+    --border: 0.3 0.022 50;
+    --input: 0.3 0.022 50;
+    --ring: 0.78 0.165 80;
+
+    --chart-1: 0.78 0.165 80;
+    --chart-2: 0.62 0.16 25;
+    --chart-3: 0.7 0.16 150;
+    --chart-4: 0.65 0.18 200;
+    --chart-5: 0.78 0.15 70;
+
+    --reel: 0.62 0.18 320;
+    --reel-foreground: 0.96 0.02 320;
+    --shop: 0.7 0.16 155;
+    --shop-foreground: 0.14 0.02 155;
+    --ainews: 0.68 0.15 230;
+    --ainews-foreground: 0.14 0.02 230;
+    --learn: 0.66 0.16 290;
+    --learn-foreground: 0.96 0.02 290;
+
+    --sidebar: 0.16 0.018 50;
+    --sidebar-foreground: 0.95 0.008 60;
+    --sidebar-primary: 0.78 0.165 80;
+    --sidebar-primary-foreground: 0.16 0.02 70;
+    --sidebar-accent: 0.24 0.022 50;
+    --sidebar-accent-foreground: 0.88 0.012 60;
+    --sidebar-border: 0.3 0.022 50;
+    --sidebar-ring: 0.78 0.165 80;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.82 0.16 85),
+      oklch(0.7 0.18 55)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.2 0.02 50),
+      oklch(0.16 0.018 50)
+    );
+    --gradient-coin: radial-gradient(
+      circle at 30% 30%,
+      oklch(0.88 0.15 90),
+      oklch(0.7 0.18 60)
+    );
+    --gradient-reel: linear-gradient(
+      180deg,
+      oklch(0.18 0.04 320),
+      oklch(0.12 0.02 320)
+    );
+    --gradient-shop: linear-gradient(
+      135deg,
+      oklch(0.72 0.16 155),
+      oklch(0.6 0.14 165)
+    );
+    --gradient-ainews: linear-gradient(
+      135deg,
+      oklch(0.7 0.15 230),
+      oklch(0.58 0.14 240)
+    );
+    --gradient-learn: linear-gradient(
+      135deg,
+      oklch(0.68 0.16 290),
+      oklch(0.56 0.15 300)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  .transition-press {
+    transition: var(--transition-press);
+  }
+  .gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .gradient-coin {
+    background-image: var(--gradient-coin);
+  }
+  .gradient-reel {
+    background-image: var(--gradient-reel);
+  }
+  .gradient-shop {
+    background-image: var(--gradient-shop);
+  }
+  .gradient-ainews {
+    background-image: var(--gradient-ainews);
+  }
+  .gradient-learn {
+    background-image: var(--gradient-learn);
+  }
+  .text-gradient-gold {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .reel-snap {
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  .reel-snap-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .reader-prose {
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+  .nav-pill-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .nav-pill-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

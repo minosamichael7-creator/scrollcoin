@@ -1,0 +1,236 @@
+// Version: 4.0.0
+type AccessControlState__192322885 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__246123559<Principal, UserRole__102378064>
+  };
+type AccessControlState__357839150 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__246123559<Principal, UserRole__576977471>
+  };
+type AchievementId__333433707 = Nat;
+type CoinAward__208840343 =
+  {
+    amount : Nat;
+    id : Nat;
+    reason : Text;
+    sourceSessionId : Nat;
+    timestamp : Timestamp__209438455
+  };
+type CoinAward__252908351 = CoinAward__208840343;
+type CoinAward__355107749 =
+  {
+    amount : Nat;
+    id : Nat;
+    reason : Text;
+    sourceSessionId : Nat;
+    timestamp : Int
+  };
+type CoinAward__511655255 =
+  {
+    amount : Nat;
+    id : Nat;
+    reason : Text;
+    sourceSessionId : Nat;
+    timestamp : Int
+  };
+type DailyGoal__18735774 =
+  {
+    completed : Bool;
+    date : Date__1056006301;
+    earnedCoins : Nat;
+    targetCoins : Nat
+  };
+type DailyGoal__251288077 =
+  {completed : Bool; date : Int; earnedCoins : Nat; targetCoins : Nat};
+type DailyGoal__515080673 = DailyGoal__18735774;
+type DailyGoal__595644480 =
+  {completed : Bool; date : Int; earnedCoins : Nat; targetCoins : Nat};
+type Data__552063367<K, V> = {var count : Nat__93962160; kvs : [var ?(K, V)]};
+type Date__1056006301 = Int;
+type Internal__455405067<K, V> =
+  {children : [var ?Node__279997185<K, V>]; data : Data__552063367<K, V>};
+type Leaf__114713147<K, V> = {data : Data__552063367<K, V>};
+type Map__190625089<K, V> = Map__719753394<K, V>;
+type Map__246123559<K, V> = Map__190625089<K, V>;
+type Map__719753394<K, V> =
+  {var root : Node__279997185<K, V>; var size : Nat__93962160};
+type Nat__920180692 = Nat;
+type Nat__93962160 = Nat__920180692;
+type NewActor__234688180 =
+  {
+    accessControlState : AccessControlState__192322885;
+    rewardsState : NewRewardsState__1071929760
+  };
+type NewActor__336733845 =
+  {
+    accessControlState : AccessControlState__357839150;
+    rewardsState : RewardsState__730469431
+  };
+type NewRewardsState__1071929760 =
+  {
+    awardedMilestones :
+      Map__246123559<UserId__557786687, Map__246123559<Nat, [Nat]>>;
+    awards : Map__246123559<UserId__557786687, [CoinAward__355107749]>;
+    dailyGoals :
+      Map__246123559<UserId__557786687,
+                      Map__246123559<Int, DailyGoal__595644480>>;
+    var nextAwardId : Nat;
+    var nextProductRedemptionId : Nat;
+    var nextRedemptionId : Nat;
+    productRedemptions :
+      Map__246123559<UserId__557786687, [ProductRedemption__22921633]>;
+    redemptions : Map__246123559<UserId__557786687, [Redemption__309472286]>;
+    users : Map__246123559<UserId__557786687, UserProfile__992745034>
+  };
+type Node__279997185<K, V> =
+  {#internal : Internal__455405067<K, V>; #leaf : Leaf__114713147<K, V>};
+type OldActor__108278319 =
+  {
+    accessControlState : AccessControlState__192322885;
+    rewardsState : OldRewardsState__330939020
+  };
+type OldActor__587291828 = {};
+type OldRewardsState__330939020 =
+  {
+    awardedMilestones :
+      Map__246123559<UserId__557786687, Map__246123559<Nat, [Nat]>>;
+    awards : Map__246123559<UserId__557786687, [CoinAward__355107749]>;
+    dailyGoals :
+      Map__246123559<UserId__557786687,
+                      Map__246123559<Int, DailyGoal__595644480>>;
+    var nextAwardId : Nat;
+    var nextRedemptionId : Nat;
+    redemptions : Map__246123559<UserId__557786687, [Redemption__309472286]>;
+    users : Map__246123559<UserId__557786687, UserProfile__992745034>
+  };
+type ProductRedemption__22921633 =
+  {id : Nat; productId : Nat; redeemedAt : Int; userId : UserId__557786687};
+type ProductRedemption__422771094 =
+  {
+    id : Nat;
+    productId : Nat;
+    redeemedAt : Timestamp__209438455;
+    userId : UserId__185462529
+  };
+type ProductRedemption__926515619 = ProductRedemption__422771094;
+type RedemptionStatus__508854638 = {#failed; #fulfilled; #pending};
+type RedemptionStatus__783016546 = {#failed; #fulfilled; #pending};
+type RedemptionStatus__80915927 = {#failed; #fulfilled; #pending};
+type Redemption__309472286 =
+  {
+    coinsDeducted : Nat;
+    id : Nat;
+    rewardId : Nat;
+    status : RedemptionStatus__783016546;
+    timestamp : Int;
+    userId : UserId__557786687
+  };
+type Redemption__371423929 =
+  {
+    coinsDeducted : Nat;
+    id : Nat;
+    rewardId : Nat;
+    status : RedemptionStatus__508854638;
+    timestamp : Int;
+    userId : UserId__266332957
+  };
+type Redemption__616196532 =
+  {
+    coinsDeducted : Nat;
+    id : Nat;
+    rewardId : Nat;
+    status : RedemptionStatus__80915927;
+    timestamp : Timestamp__209438455;
+    userId : UserId__185462529
+  };
+type Redemption__831227071 = Redemption__616196532;
+type RewardsState__730469431 =
+  {
+    awardedMilestones :
+      Map__246123559<UserId__266332957, Map__246123559<Nat, [Nat]>>;
+    awards : Map__246123559<UserId__266332957, [CoinAward__511655255]>;
+    dailyGoals :
+      Map__246123559<UserId__266332957,
+                      Map__246123559<Int, DailyGoal__251288077>>;
+    var nextAwardId : Nat;
+    var nextRedemptionId : Nat;
+    redemptions : Map__246123559<UserId__266332957, [Redemption__371423929]>;
+    users : Map__246123559<UserId__266332957, UserProfile__116156736>
+  };
+type Timestamp__209438455 = Int;
+type UserId__185462529 = Principal;
+type UserId__266332957 = Principal;
+type UserId__557786687 = Principal;
+type UserProfile__116156736 =
+  {
+    achievements : [Nat];
+    joinDate : Int;
+    lastActiveDate : Int;
+    lifetimeEarnings : Nat;
+    principal : UserId__266332957;
+    streakCount : Nat;
+    streakFreezeCount : Nat;
+    todayEarnings : Nat;
+    totalCoins : Nat;
+    username : Text
+  };
+type UserProfile__277159460 = UserProfile__425182366;
+type UserProfile__425182366 =
+  {
+    achievements : [AchievementId__333433707];
+    joinDate : Date__1056006301;
+    lastActiveDate : Date__1056006301;
+    lifetimeEarnings : Nat;
+    principal : UserId__185462529;
+    streakCount : Nat;
+    streakFreezeCount : Nat;
+    todayEarnings : Nat;
+    totalCoins : Nat;
+    username : Text
+  };
+type UserProfile__992745034 =
+  {
+    achievements : [Nat];
+    joinDate : Int;
+    lastActiveDate : Int;
+    lifetimeEarnings : Nat;
+    principal : UserId__557786687;
+    streakCount : Nat;
+    streakFreezeCount : Nat;
+    todayEarnings : Nat;
+    totalCoins : Nat;
+    username : Text
+  };
+type UserRole__102378064 = {#admin; #guest; #user};
+type UserRole__576977471 = {#admin; #guest; #user};
+type UserRole__686137147 = {#admin; #guest; #user};
+{
+  "20260724_080210" : (_old : OldActor__587291828) -> NewActor__336733845;
+  "20260724_090000" : (old : OldActor__108278319) -> NewActor__234688180
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__246123559<Principal, UserRole__686137147>
+    };
+  stable rewardsState :
+    {
+      awardedMilestones :
+        Map__246123559<UserId__185462529, Map__246123559<Nat, [Nat]>>;
+      awards : Map__246123559<UserId__185462529, [CoinAward__252908351]>;
+      dailyGoals :
+        Map__246123559<UserId__185462529,
+                        Map__246123559<Date__1056006301, DailyGoal__515080673>>;
+      var nextAwardId : Nat;
+      var nextProductRedemptionId : Nat;
+      var nextRedemptionId : Nat;
+      productRedemptions :
+        Map__246123559<UserId__185462529, [ProductRedemption__926515619]>;
+      redemptions :
+        Map__246123559<UserId__185462529, [Redemption__831227071]>;
+      users : Map__246123559<UserId__185462529, UserProfile__277159460>
+    }
+};
